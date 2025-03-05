@@ -126,27 +126,6 @@
                   />
                 </Label>
               </div>
-
-              <!-- Border URI -->
-              <div v-if="signature.borderUrl">
-                <Label
-                  :value="`Border Image`"
-                  class="after:ease-out-expo relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-red-500 after:transition-all after:duration-300 after:content-[''] focus-within:after:w-full"
-                  labelClass="pl-[10px]"
-                >
-                  <template #prepend>
-                    <UriCheckIcon :status="uriValidationStatuses.get('borderUrl') || 'default'" />
-                  </template>
-
-                  <InputText
-                    :model-value="signatureAssets.borderUrl"
-                    @update:model-value="(value) => {
-                      signatureAssets.borderUrl = parseGDriveUri(value)
-                    }"
-                    @input="debouncedValidateUri(signatureAssets.borderUrl, 'borderUrl')"
-                  />
-                </Label>
-              </div>
             </div>
           </div>
 
@@ -277,10 +256,6 @@
       urisToValidate['barcodeUrl'] = assets.barcodeUrl
     }
 
-    if (assets?.borderUrl) {
-      urisToValidate['borderUrl'] = assets.borderUrl
-    }
-
     if (assets.socialLinks?.length > 0) {
       assets.socialLinks.forEach((link: any) => {
         if (link.transIconHref) {
@@ -317,7 +292,6 @@
     // Initialize validation statuses
     if (signature.value?.avatarUrl) uriValidationStatuses.value.set('avatarUrl', 'default')
     if (signature.value?.barcodeUrl) uriValidationStatuses.value.set('barcodeUrl', 'default')
-    if (signature.value?.borderUrl) uriValidationStatuses.value.set('borderUrl', 'default')
 
     signatureAssets.value.socialLinks.forEach((link: any) => {
       uriValidationStatuses.value.set(link.transType, 'default')

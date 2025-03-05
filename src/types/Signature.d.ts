@@ -9,5 +9,4 @@ export type SignatureModel = {
     footerLink: string
     footerLinkText: string
     barcodeUrl: string
-    borderUrl: string
   }

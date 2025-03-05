@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 import type { SignatureModel, SignatureAssetsModel } from '@/types'
 import EmailBarcode from '@/assets/email-barcode.png'
-import EmailBorder from '@/assets/email-border.png'
 import useEventBus from "@/composables/useEventBus"
 
 export const useSignatureStore = defineStore('signatureStore', () => {
@@ -16,15 +15,13 @@ export const useSignatureStore = defineStore('signatureStore', () => {
     footerPhone: '',
     footerLink: 'https://',
     footerLinkText: '',
-    barcodeUrl: EmailBarcode,
-    borderUrl: EmailBorder
+    barcodeUrl: EmailBarcode
   })
 
   const signatureAssets = reactive<SignatureAssetsModel>({
     avatarUrl: '',
     socialLinks: [],
-    barcodeUrl: '',
-    borderUrl: ''
+    barcodeUrl: ''
   })
 
   function $updateSignature(data: Partial<SignatureModel>) {
@@ -40,8 +37,7 @@ export const useSignatureStore = defineStore('signatureStore', () => {
       footerPhone: '',
       footerLink: 'https://',
       footerLinkText: '',
-      barcodeUrl: EmailBarcode,
-      borderUrl: EmailBorder
+      barcodeUrl: EmailBarcode
     }
 
     $resetAssets()
@@ -53,7 +49,6 @@ export const useSignatureStore = defineStore('signatureStore', () => {
     signatureAssets.avatarUrl = ''
     signatureAssets.socialLinks = []
     signatureAssets.barcodeUrl = ''
-    signatureAssets.borderUrl = ''
   }
 
   return {

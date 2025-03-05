@@ -56,8 +56,6 @@
       </Card>
     </Label>
 
-    <InputSwitch label="Show Edge Border" v-model="showEdgeBorder" />
-
     <div class="mt-4">
       <Button class="flex items-center gap-2 place-self-end" @click="emitBus('changeStep', 'next')">
         Next | Set Avatar
@@ -75,26 +73,16 @@
   import InputSocial from '@/components/SignatureBuilder/components/InputSocial.vue'
   import { socialMap } from '@/composables/useSocial'
   import { useSignatureStore } from '@/stores/useSignatureStore'
-  import type { SocialTypeModel, SignatureModel } from '@/types'
+  import type { SocialTypeModel } from '@/types'
   import { Icon } from '@iconify/vue'
   import { storeToRefs } from 'pinia'
-  import { computed, watch } from 'vue'
-  import InputSwitch from '@/components/InputSwitch.vue'
+  import { computed } from 'vue'
   import useEventsBus from "@/composables/useEventBus"
-  import EmailBorder from '@/assets/email-border.png'
 
   const { emitBus } = useEventsBus()
 
   const signatureStore = useSignatureStore()
   const { signature } = storeToRefs(signatureStore)
-  
-  const showEdgeBorder = computed({
-    get: () => Boolean(signature.value?.borderUrl),
-    set: (newValue: boolean) => {
-      if (!signature.value) return
-      signature.value.borderUrl = newValue ? EmailBorder : ''
-    }
-  })
 
   const socialArray = computed(() => Array.from(socialMap))
 
