@@ -5,13 +5,9 @@ import 'dotenv/config'
 
 const app = express();
 
-// Determine environment
-const isProd = process.env.NODE_ENV === 'production';
-const clientOrigin = isProd ? 'https://ba-sig.robshelnutt.com' : 'http://localhost:5173';
-
 // Enable CORS for all routes
 app.use(cors({
-    origin: clientOrigin, // Dynamic origin based on environment
+    origin: process.env.VITE_AUTH_API_URL, // Dynamic origin based on environment
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
