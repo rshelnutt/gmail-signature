@@ -96,7 +96,13 @@
                     <UriCheckIcon :status="uriValidationStatuses.get('avatarUrl') || 'default'" />
                   </template>
 
-                  <InputText v-model="signatureAssets.avatarUrl" @input="debouncedValidateUri(signatureAssets.avatarUrl, 'avatarUrl')" />
+                  <InputText 
+                    :model-value="signatureAssets.avatarUrl"
+                    @update:model-value="(value) => {
+                      signatureAssets.avatarUrl = parseGDriveUri(value)
+                    }"
+                    @input="debouncedValidateUri(signatureAssets.avatarUrl, 'avatarUrl')"
+                  />
                 </Label>
               </div>
 
@@ -111,7 +117,13 @@
                     <UriCheckIcon :status="uriValidationStatuses.get('barcodeUrl') || 'default'" />
                   </template>
 
-                  <InputText v-model="signatureAssets.barcodeUrl" @input="debouncedValidateUri(signatureAssets.barcodeUrl, 'barcodeUrl')" />
+                  <InputText 
+                    :model-value="signatureAssets.barcodeUrl"
+                    @update:model-value="(value) => {
+                      signatureAssets.barcodeUrl = parseGDriveUri(value)
+                    }"
+                    @input="debouncedValidateUri(signatureAssets.barcodeUrl, 'barcodeUrl')"
+                  />
                 </Label>
               </div>
 
@@ -126,7 +138,13 @@
                     <UriCheckIcon :status="uriValidationStatuses.get('borderUrl') || 'default'" />
                   </template>
 
-                  <InputText v-model="signatureAssets.borderUrl" @input="debouncedValidateUri(signatureAssets.borderUrl, 'borderUrl')" />
+                  <InputText
+                    :model-value="signatureAssets.borderUrl"
+                    @update:model-value="(value) => {
+                      signatureAssets.borderUrl = parseGDriveUri(value)
+                    }"
+                    @input="debouncedValidateUri(signatureAssets.borderUrl, 'borderUrl')"
+                  />
                 </Label>
               </div>
             </div>
@@ -150,7 +168,10 @@
                   </template>
 
                   <InputText
-                    v-model="signatureAssets.socialLinks[index].transIconHref"
+                    :model-value="signatureAssets.socialLinks[index].transIconHref"
+                    @update:model-value="(value) => {
+                      signatureAssets.socialLinks[index].transIconHref = parseGDriveUri(value)
+                    }"
                     @input="debouncedValidateUri(signatureAssets.socialLinks[index].transIconHref, link.transType)"
                   />
                 </Label>
@@ -216,6 +237,7 @@
   import { Icon } from '@iconify/vue'
   import { storeToRefs } from 'pinia'
   import { computed, onMounted, ref, watch } from 'vue'
+  import { parseGDriveUri } from '@/utils/parseGDriveUri'
 
   const { emitBus } = useEventsBus()
 
