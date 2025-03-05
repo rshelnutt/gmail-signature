@@ -17,212 +17,214 @@
         <td
           width="392px"
           height="185px"
-          :style="{ display: 'table-cell', boxSizing: 'border-box', margin: '0', padding: '0', background: 'white' }"
+          :style="{ display: 'table-cell', boxSizing: 'border-box', margin: '0', padding: '0' }"
         >
-          <table
-            :style="{
-              textIndent: '0',
-              borderCollapse: 'collapse',
-              boxSizing: 'border-box',
-              margin: '0',
-              padding: '0',
-              border: '0 solid',
-              width: '100%',
-              height: '100%',
-            }"
-          >
-            <tbody
+          <div :style="[{ padding: '10px'}]">
+            <table
               :style="{
-                display: 'table-row-group',
+                textIndent: '0',
+                borderCollapse: 'collapse',
                 boxSizing: 'border-box',
                 margin: '0',
                 padding: '0',
+                border: '0 solid',
+                width: '100%',
+                height: '100%',
               }"
             >
-              <tr
+              <tbody
                 :style="{
-                  display: 'table-row',
+                  display: 'table-row-group',
                   boxSizing: 'border-box',
                   margin: '0',
                   padding: '0',
                 }"
               >
-                <td
-                  width="126px"
+                <tr
                   :style="{
-                    display: 'table-cell',
+                    display: 'table-row',
                     boxSizing: 'border-box',
                     margin: '0',
                     padding: '0',
                   }"
-                  v-if="signatureAssets.avatarUrl || signature.avatarUrl"
                 >
-                  <img
-                    :style="{ marginRight: '12px', display: 'inline', verticalAlign: 'top' }"
-                    :src="signatureAssets.avatarUrl || signature.avatarUrl"
-                  />
-                </td>
-
-                <td :style="{ boxSizing: 'border-box', margin: '0', padding: '0', verticalAlign: 'top' }">
-                  <table
+                  <td
+                    width="126px"
                     :style="{
-                      textIndent: '0',
-                      borderCollapse: 'collapse',
+                      display: 'table-cell',
                       boxSizing: 'border-box',
                       margin: '0',
                       padding: '0',
-                      border: '0 solid',
                     }"
+                    v-if="signatureAssets.avatarUrl || signature.avatarUrl"
                   >
-                    <tbody
+                    <img
+                      :style="{ marginRight: '12px', display: 'inline', verticalAlign: 'top' }"
+                      :src="signatureAssets.avatarUrl || signature.avatarUrl"
+                    />
+                  </td>
+
+                  <td :style="{ boxSizing: 'border-box', margin: '0', padding: '0', verticalAlign: 'top' }">
+                    <table
                       :style="{
-                        display: 'table-row-group',
+                        textIndent: '0',
+                        borderCollapse: 'collapse',
                         boxSizing: 'border-box',
                         margin: '0',
                         padding: '0',
+                        border: '0 solid',
                       }"
                     >
-                      <tr
+                      <tbody
                         :style="{
-                          display: 'table-row',
+                          display: 'table-row-group',
                           boxSizing: 'border-box',
                           margin: '0',
                           padding: '0',
                         }"
                       >
-                        <td
+                        <tr
                           :style="{
-                            display: 'table-cell',
+                            display: 'table-row',
                             boxSizing: 'border-box',
                             margin: '0',
                             padding: '0',
-                            verticalAlign: 'top'
                           }"
                         >
-                          <p
+                          <td
                             :style="{
-                              display: 'block',
-                              color: 'black',
-                              fontSize: '24px',
-                              lineHeight: '1',
-                              fontFamily: 'Century Gothic, Andale Mono, Helvetica, Verdana',
+                              display: 'table-cell',
                               boxSizing: 'border-box',
-                              margin: '0 0 12px',
+                              margin: '0',
                               padding: '0',
+                              verticalAlign: 'top'
                             }"
                           >
-                            {{ signature.name }}
-                          </p>
-                          <div
-                            :style="{ boxSizing: 'border-box', margin: '0 0 12px', padding: '0' }"
-                            v-if="signature.title"
-                          >
-                            <span
+                            <p
                               :style="{
-                                display: 'inline-block',
-                                color: 'white',
-                                backgroundColor: '#ff2200',
-                                padding: '4px 8px',
-                                fontSize: '16px',
-                                fontWeight: 'bold',
-                                letterSpacing: '0.0125em',
+                                display: 'block',
+                                color: 'black',
+                                fontSize: '24px',
                                 lineHeight: '1',
-                                textTransform: 'uppercase',
-                                fontFamily: 'Trebuchet MS, CenturyGothic, Helvetica, Verdana',
+                                fontFamily: 'Century Gothic, Andale Mono, Helvetica, Verdana',
+                                boxSizing: 'border-box',
+                                margin: '0 0 12px',
+                                padding: '0',
                               }"
                             >
-                              {{ signature.title }}
-                            </span>
-                          </div>
+                              {{ signature.name }}
+                            </p>
+                            <div
+                              :style="{ boxSizing: 'border-box', margin: '0 0 12px', padding: '0' }"
+                              v-if="signature.title"
+                            >
+                              <span
+                                :style="{
+                                  display: 'inline-block',
+                                  color: 'white',
+                                  backgroundColor: '#ff2200',
+                                  padding: '4px 8px',
+                                  fontSize: '16px',
+                                  fontWeight: 'bold',
+                                  letterSpacing: '0.0125em',
+                                  lineHeight: '1',
+                                  textTransform: 'uppercase',
+                                  fontFamily: 'Trebuchet MS, CenturyGothic, Helvetica, Verdana',
+                                }"
+                              >
+                                {{ signature.title }}
+                              </span>
+                            </div>
 
-                          <!-- Social Icon Links -->
-                          <div :style="{ boxSizing: 'border-box', margin: '0', padding: '0' }">
-                            <component 
-                              :is="socialObjectLinkIcon" 
-                              v-for="(object, index) in signature.socialLinks" 
-                              :key="object.type"
-                              :="object"
-                              :isLast="signature.socialLinks ? index === signature.socialLinks?.length! - 1 : false"
-                            />
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-              <tr
-                :style="{
-                  display: 'table-row',
-                  boxSizing: 'border-box',
-                  margin: '0',
-                  padding: '0',
-                }"
-              >
-                <td
-                  colspan="2"
+                            <!-- Social Icon Links -->
+                            <div :style="{ boxSizing: 'border-box', margin: '0', padding: '0' }">
+                              <component 
+                                :is="socialObjectLinkIcon" 
+                                v-for="(object, index) in signature.socialLinks" 
+                                :key="object.type"
+                                :="object"
+                                :isLast="signature.socialLinks ? index === signature.socialLinks?.length! - 1 : false"
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr
                   :style="{
-                    display: 'table-cell',
+                    display: 'table-row',
                     boxSizing: 'border-box',
                     margin: '0',
                     padding: '0',
                   }"
                 >
-                  <!-- Barcode -->
-                  <img
+                  <td
+                    colspan="2"
                     :style="{
-                      display: 'inline',
-                      boxSizing: 'border-box',
-                      marginTop: '16px',
-                      marginBottom: '6px'
-                    }"
-                    :src="signatureAssets.barcodeUrl || signature.barcodeUrl"
-                  />
-                  <div
-                    :style="{
-                      fontFamily: 'Courier New, Palatino, Baskerville',
+                      display: 'table-cell',
                       boxSizing: 'border-box',
                       margin: '0',
                       padding: '0',
-                      lineHeight: '1',
                     }"
                   >
+                    <!-- Barcode -->
+                    <img
+                      :style="{
+                        display: 'inline',
+                        boxSizing: 'border-box',
+                        marginTop: '16px',
+                        marginBottom: '6px'
+                      }"
+                      :src="signatureAssets.barcodeUrl || signature.barcodeUrl"
+                    />
                     <div
                       :style="{
-                        float: 'left',
+                        fontFamily: 'Courier New, Palatino, Baskerville',
                         boxSizing: 'border-box',
                         margin: '0',
                         padding: '0',
+                        lineHeight: '1',
                       }"
                     >
-                      <a
-                        :href="`tel:${signature.footerPhone}`"
-                        :style="{ color: '#808080', textDecoration: 'unset' }"
+                      <div
+                        :style="{
+                          float: 'left',
+                          boxSizing: 'border-box',
+                          margin: '0',
+                          padding: '0',
+                        }"
                       >
-                        {{ signature.footerPhone }}
-                      </a>
-                    </div>
-                    <div
-                      :style="{
-                        float: 'right',
-                        boxSizing: 'border-box',
-                        margin: '0',
-                        padding: '0',
-                      }"
-                    >
-                      <a
-                        :href="signature.footerLink"
-                        :style="{ color: '#808080', textDecoration: 'unset' }"
+                        <a
+                          :href="`tel:${signature.footerPhone}`"
+                          :style="{ color: '#808080', textDecoration: 'unset' }"
+                        >
+                          {{ signature.footerPhone }}
+                        </a>
+                      </div>
+                      <div
+                        :style="{
+                          float: 'right',
+                          boxSizing: 'border-box',
+                          margin: '0',
+                          padding: '0',
+                        }"
                       >
-                        {{  signature.footerLinkText }}
-                      </a>
+                        <a
+                          :href="signature.footerLink"
+                          :style="{ color: '#808080', textDecoration: 'unset' }"
+                        >
+                          {{  signature.footerLinkText }}
+                        </a>
+                      </div>
+                      <div :style="{ clear: 'both', height: '0' }">&nbsp;</div>
                     </div>
-                    <div :style="{ clear: 'both', height: '0' }">&nbsp;</div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </td>
       </tr>
     </tbody>
