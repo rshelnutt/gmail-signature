@@ -24,8 +24,8 @@
 
         <ol class="list-inside list-decimal space-y-4 pl-6 font-medium text-white">
           <li>
-            <span class="text-white/50"
-              >Click the three dots in the top right corner of the file to open the file options.
+            <span class="text-white/50">
+              Click the three dots in the top right corner of the file to open the file options.
               <Tooltip>
                 <HelpTip />
 
@@ -36,8 +36,8 @@
             </span>
           </li>
           <li>
-            <span class="text-white/50"
-              >Select "Share", then "Share" again from the context menu.
+            <span class="text-white/50">
+              Select "Share", then "Share" again from the context menu.
               <Tooltip>
                 <HelpTip />
 

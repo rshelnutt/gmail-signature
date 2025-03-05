@@ -7,6 +7,7 @@
       margin: '0',
       padding: '0',
       border: '0 solid',
+      backgroundColor: 'transparent'
     }"
   >
     <tbody
@@ -20,7 +21,7 @@
         >
           <div
             :style="[
-              { backgroundColor: 'white', padding: '10px 0 10px 10px', height: '185px' },
+              { backgroundColor: 'white', padding: '10px 0 10px 10px' },
               { padding: '10px'}
             ]"
           >
