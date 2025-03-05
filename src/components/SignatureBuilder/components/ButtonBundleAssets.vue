@@ -12,6 +12,7 @@
   import { useSignatureStore } from '@/stores/useSignatureStore'
   import useZip from '@/composables/useZip'
   import { Icon } from '@iconify/vue'
+    import { socialMap } from '@/composables/useSocial'
 
   const signatureStore = useSignatureStore()
   const { signature } = storeToRefs(signatureStore)
@@ -21,20 +22,46 @@
     return url.split('/')!.pop() as string
   }
 
+  const isBase64Image = (str: string) => {
+    return str.startsWith('data:image')
+  }
+
   const handleBundleAssets = async () => {
-    const assetList = [
-        signature.value.avatarUrl,
-        signature.value.barcodeUrl,
-        ...signature.value.socialLinks.map((socialObj: SocialObjectModel) => socialObj.iconHref)
-    ] as string[]
+    const assetList = [] as Array<{url: string, filename: string}>
+
+    // Add avatar if exists
+    if (signature.value.avatarUrl) {
+      const isBase64 = isBase64Image(signature.value.avatarUrl)
+
+      assetList.push({
+        url: signature.value.avatarUrl,
+        filename: isBase64 ? 'email-avatar.png' : parseFileName(signature.value.avatarUrl)
+      })
+    }
+
+    // Add barcode if exists
+    if (signature.value.barcodeUrl) {
+      assetList.push({
+        url: signature.value.barcodeUrl,
+        filename: 'email-barcode.png'
+      })
+    }
+    
+    // Add social icons
+    signature.value.socialLinks.forEach((socialObj: SocialObjectModel) => {
+      assetList.push({
+        url: socialObj.iconHref!,
+        filename: `email-icon-${socialObj.type}.png`
+      })
+    })
 
     if (!assetList.length) return
     
     // Use Promise.all to wait for all files to be added
-    const addFilePromises = assetList.map(async (assetUrl: string) => {
-      if (assetUrl) {
-        console.log(assetUrl, parseFileName(assetUrl))
-        return await addFileFromUrl(parseFileName(assetUrl), assetUrl)
+    const addFilePromises = assetList.map(async (asset) => {
+      if (asset.url) {
+        console.log(`Adding file: ${asset.filename} from ${asset.url}`)
+        return await addFileFromUrl(asset.filename, asset.url)
       }
       return false
     })
