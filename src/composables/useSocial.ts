@@ -1,8 +1,8 @@
-import SocialIconBA from '@/assets/email-icon-ba.png'
-import SocialIconDribbble from '@/assets/email-icon-dribbble.png'
-import SocialIconGH from '@/assets/email-icon-gh.png'
-import SocialIconLI from '@/assets/email-icon-li.png'
-import SocialIconX from '@/assets/email-icon-x.png'
+import SocialIconBA from '@/assets/email-icon-ba.png?url'
+import SocialIconDribbble from '@/assets/email-icon-dribbble.png?url'
+import SocialIconGH from '@/assets/email-icon-gh.png?url'
+import SocialIconLI from '@/assets/email-icon-li.png?url'
+import SocialIconX from '@/assets/email-icon-x.png?url'
 
 export const socialMap = new Map([
   ['black-airplane', {

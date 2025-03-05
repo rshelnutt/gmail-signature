@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 import type { SignatureModel, SignatureAssetsModel } from '@/types'
-import EmailBarcode from '@/assets/email-barcode.png'
+import EmailBarcode from '@/assets/email-barcode.png?url'
 import useEventBus from "@/composables/useEventBus"
 
 export const useSignatureStore = defineStore('signatureStore', () => {

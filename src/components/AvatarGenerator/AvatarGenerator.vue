@@ -108,7 +108,7 @@
   import { computed, ref } from 'vue'
   import Button from '@/components/Button.vue'
   import { Icon } from '@iconify/vue'
-  import EmailAvatar from '@/assets/email-avatar.png'
+  import EmailAvatar from '@/assets/email-avatar.png?url'
 
   const emit = defineEmits(['avatarUploading'])
 
