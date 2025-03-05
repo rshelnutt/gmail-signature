@@ -25,7 +25,6 @@
     const assetList = [
         signature.value.avatarUrl,
         signature.value.barcodeUrl,
-        signature.value.borderUrl,
         ...signature.value.socialLinks.map((socialObj: SocialObjectModel) => socialObj.iconHref)
     ] as string[]
 
