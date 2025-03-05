@@ -17,7 +17,7 @@
         <td
           width="392px"
           height="185px"
-          :style="{ display: 'table-cell', boxSizing: 'border-box', margin: '0', padding: '0', backgroundColor: 'white' }"
+          :style="{ display: 'table-cell', boxSizing: 'border-box', margin: '0', padding: '0', backgroundImage: 'linear-gradient(90deg, white, white)' }"
         >
           <div
             :style="[
