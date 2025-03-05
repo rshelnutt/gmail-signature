@@ -1,4 +1,323 @@
-@import './base.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900');
+
+@import 'tailwindcss';
+
+@font-face {
+  font-family: Industry;
+  font-style: normal;
+  font-weight: 300;
+  src: url(./fonts/Digital-7.woff2) format("woff2"),url(./fonts/Digital-7.woff) format("woff")
+}
+
+@font-face {
+  font-family: QuinqueFive;
+  font-style: normal;
+  font-weight: 300;
+  src: url(./fonts/QuinqueFive.woff2) format("woff2"),url(./fonts/QuinqueFive.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: normal;
+  font-weight: 100;
+  src: url(./fonts/Industry-Thin.woff2) format("woff2"),url(./fonts/Industry-Thin.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: italic;
+  font-weight: 100;
+  src: url(./fonts/Industry-ThinItalic.woff2) format("woff2"),url(./fonts/Industry-ThinItalic.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: normal;
+  font-weight: 200;
+  src: url(./fonts/Industry-Light.woff2) format("woff2"),url(./fonts/Industry-Light.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: italic;
+  font-weight: 200;
+  src: url(./fonts/Industry-LightItalic.woff2) format("woff2"),url(./fonts/Industry-LightItalic.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: normal;
+  font-weight: 300;
+  src: url(./fonts/Industry-Book.woff2) format("woff2"),url(./fonts/Industry-Book.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: italic;
+  font-weight: 300;
+  src: url(./fonts/Industry-BookItalic.woff2) format("woff2"),url(./fonts/Industry-BookItalic.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: normal;
+  font-weight: 400;
+  src: url(./fonts/Industry-Medium.woff2) format("woff2"),url(./fonts/Industry-Medium.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: italic;
+  font-weight: 400;
+  src: url(./fonts/Industry-MediumItalic.woff2) format("woff2"),url(./fonts/Industry-MediumItalic.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: normal;
+  font-weight: 500;
+  src: url(./fonts/Industry-Demi.woff2) format("woff2"),url(./fonts/Industry-Demi.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: italic;
+  font-weight: 500;
+  src: url(./fonts/Industry-DemiItalic.woff2) format("woff2"),url(./fonts/Industry-DemiItalic.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: normal;
+  font-weight: 700;
+  src: url(./fonts/Industry-Bold.woff2) format("woff2"),url(./fonts/Industry-Bold.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: italic;
+  font-weight: 700;
+  src: url(./fonts/Industry-BoldItalic.woff2) format("woff2"),url(./fonts/Industry-BoldItalic.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: normal;
+  font-weight: 800;
+  src: url(./fonts/Industry-Black.woff2) format("woff2"),url(./fonts/Industry-Black.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: italic;
+  font-weight: 800;
+  src: url(./fonts/Industry-BlackItalic.woff2) format("woff2"),url(./fonts/Industry-BlackItalic.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: normal;
+  font-weight: 900;
+  src: url(./fonts/Industry-Ultra.woff2) format("woff2"),url(./fonts/Industry-Ultra.woff) format("woff")
+}
+
+@font-face {
+  font-family: Industry;
+  font-style: italic;
+  font-weight: 900;
+  src: url(./fonts/Industry-UltraItalic.woff2) format("woff2"),url(./fonts/Industry-UltraItalic.woff) format("woff")
+}
+
+@theme {
+  --font-heading: Industry, Helvetica, sans-serif;
+  --font-body: Inter, Helvetica, sans-serif;
+  --font-pixel: 'QuinqueFive', monospace;
+  --font-digital: 'Digital-7';
+
+  --color-ba-red: #FF2200;
+  --color-ba-red-dark: #BC301B;
+  --color-ba-green: #00E83B;
+  --color-ba-black: #1A1A1A;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-easy: cubic-bezier(0.19, 1, 0.22, 1);
+
+  /* Pulse Grow */
+  --animate-pulse-grow: pulse-grow 1.5s linear infinite;
+
+  @keyframes pulse-grow {
+    0% {
+      transform: scale(0.95);
+    }
+
+    50% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(0.95);
+    }
+  }
+
+  /* Swing */
+  --animate-swing: swing 1s ease-out forwards;
+
+  @keyframes swing {
+    20% { transform: rotate(15deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(5deg); }
+    80% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  /* Fade In */
+  --animate-fade-in: fadeIn 0.3s var(--ease-easy) forwards;
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Fade Out */
+  --animate-fade-out: fadeOut 0.3s var(--ease-easy) forwards;
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Fade In Grow */
+  --animate-fade-in-grow: fadeInGrow 0.3s var(--ease-easy) forwards;
+
+  @keyframes fadeInGrow {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Fade Out Shrink */
+  --animate-fade-out-shrink: fadeOutShrink 0.3s var(--ease-easy) forwards;
+
+  @keyframes fadeOutShrink {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  /* Fade In Up */
+  --animate-fade-in-up: fadeInUp 0.3s var(--ease-easy) forwards;
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Fade Out Down */
+  --animate-fade-out-down: fadeOutDown 0.3s var(--ease-easy) forwards;
+
+  @keyframes fadeOutDown {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+
+  /* Glow Text */
+  --animate-glow-text: glowText 1s ease-in-out infinite alternate;
+
+  @keyframes glowText {
+    from {
+      text-shadow: 0 0 5px rgba(0,0,0,0.4), 0 0 2px #05df72, 0 0 5px #05df72, 0 0 5px #05df72, 0 0 7px #05df72, 0 0 9px #05df72;
+    }
+    to {
+      text-shadow: 0 0 5px rgba(0,0,0,0.4), 0 0 15px #05df72, 0 0 20px #05df72, 0 0 25px #05df72, 0 0 30px #05df72, 0 0 35px #05df72;
+    }
+  }
+
+  /* Scan */
+  --animate-scan: scan 4s infinite linear;
+
+  @keyframes scan {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+  
+  /* Ripple */
+  --animate-ripple: ripple 4s infinite linear;
+
+  @keyframes ripple {
+    from {
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0;
+    }
+    to {
+      transform: scale(300);
+      opacity: 0;
+    }
+  }
+
+  --scrollbar-width: 15px;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-body);
+  padding-left: calc(100vw - 100%);
+  margin-left: calc((100vw - 100%) * -1);
+  padding-right: 0 !important;
+
+  &.is-scrollable {
+    margin-left: 0;
+  }
+}
+
+.background-image {
+  position: fixed;
+  background: #202020 url('ba-sig-bg.jpg') no-repeat;
+  background-size: cover;
+  background-position: 100%;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
 
 #app {
   max-width: 1280px;
@@ -7,29 +326,12 @@
   font-weight: normal;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
 @media (min-width: 1024px) {
   body {
-    display: flex;
-    place-items: center;
+    width: 100%;
   }
 
   #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
 }

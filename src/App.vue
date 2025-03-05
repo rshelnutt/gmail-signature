@@ -1,47 +1,62 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
   <main>
-    <TheWelcome />
+    <img :src="BASigLogo" class="[.is-scrollable_&]:pl-[0px] min-h-[50px] h-[7.5dvh] fixed top-[calc((18dvh-7.5dvh)/2)] left-[50dvw] -translate-x-[50%]" ref="logoRef" />
+    <div class="h-[18dvh]" />
+    <SignatureBuilder />
   </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script setup lang="ts">
+  import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
+  import BASigLogo from '@/assets/ba-sig-logo.svg'
+  import SignatureBuilder from '@/components/SignatureBuilder/SignatureBuilder.vue'
+  import { useScrollFade } from './composables/useScrollFade';
+  
+  const logoRef = ref(null);
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+  useScrollFade(logoRef, {
+    fadeStartDistance: 0,  
+    fadeDistance: 120
+  });
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+  const contentExceedsViewport = ref(false);
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+  const updateOverflowClass = (mutationList: any) => {
+    if (!mutationList || mutationList.length === 0) return;
+    contentExceedsViewport.value = mutationList[0].contentRect?.height > window.innerHeight;
+  };
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+  const updateOverflowClassFromMutation = () => {
+    if (document.querySelector('[data-radix-focus-guard]')) {
+      return contentExceedsViewport.value = false;
+    }
+  };
+
+  watch(contentExceedsViewport, (newValue) => {
+    if (newValue) {
+      document.body.classList.add('is-scrollable');
+    } else {
+      document.body.classList.remove('is-scrollable');
+    }
+  }, { immediate: true });
+
+  // Observers
+  let resizeObserver: ResizeObserver;
+  let mutationObserver: MutationObserver;
+
+  onMounted(() => {
+    resizeObserver = new ResizeObserver(updateOverflowClass);
+    resizeObserver.observe(document.body);
+
+    mutationObserver = new MutationObserver(updateOverflowClassFromMutation);
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  });
+  
+  onUnmounted(() => {
+    resizeObserver?.disconnect();
+    mutationObserver?.disconnect();
+  });
+</script>
