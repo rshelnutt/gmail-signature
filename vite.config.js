@@ -21,6 +21,22 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       cors: true
+    },
+    build: {
+      assetsInlineLimit: 0,
+      manifest: true,
+      rollupOptions: {
+        output: {
+          entryFileNames: `assets/[name]-[hash].js`,
+          chunkFileNames: `assets/[name]-[hash].js`,
+          assetFileNames: ({ names }) => {
+            if (names?.[0]?.startsWith('email-')) {
+              return `assets/[name].[ext]`
+            }
+            return `assets/[name]-[hash].[ext]`
+          }
+        }
+      }
     }
   }
 })

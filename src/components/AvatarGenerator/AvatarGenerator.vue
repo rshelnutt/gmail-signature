@@ -108,6 +108,7 @@
   import { computed, ref } from 'vue'
   import Button from '@/components/Button.vue'
   import { Icon } from '@iconify/vue'
+  import EmailAvatar from '@/assets/email-avatar.png'
 
   const emit = defineEmits(['avatarUploading'])
 
@@ -134,7 +135,8 @@
   })
 
   const setDefaultAvatar = () => {
-    signature.value.avatarUrl = 'https://ik.imagekit.io/ds612/tr:w-114,h-114,t-false,fo-face,z-0.65,q-90,f-png:f-png,l-image,i-email-caret.svg,lfo-bottom_right,l-end/email-default.png'
+    // signature.value.avatarUrl = 'https://ik.imagekit.io/ds612/tr:w-114,h-114,t-false,fo-face,z-0.65,q-90,f-png:f-png,l-image,i-email-caret.svg,lfo-bottom_right,l-end/email-default.png'
+    signature.value.avatarUrl = EmailAvatar
   }
 
   const resetAvatar = () => {
