@@ -70,10 +70,8 @@
 </template>
 
 <script setup lang="ts">
-  import type { SignatureModel } from '@/types'
   import { RendererNode, computed, onMounted, onUnmounted, ref, type Ref } from 'vue'
 
-  import useSocial from '@/composables/useSocial'
   import { useSignatureStore } from '@/stores/useSignatureStore'
   import { storeToRefs } from 'pinia'
 
@@ -92,7 +90,7 @@
 
   const { $resetSignature } = useSignatureStore()
   const signatureStore = storeToRefs(useSignatureStore())
-  const { signature } = signatureStore
+  const { signature, signatureAssets } = signatureStore
 
   const { emitBus } = useEventBus()
 

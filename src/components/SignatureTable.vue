@@ -60,11 +60,11 @@
                       margin: '0',
                       padding: '0',
                     }"
-                    v-if="props.avatarUrl"
+                    v-if="signatureAssets.avatarUrl || signature.avatarUrl"
                   >
                     <img
                       :style="{ marginRight: '12px', display: 'inline', verticalAlign: 'top' }"
-                      :src="props.avatarUrl"
+                      :src="signatureAssets.avatarUrl || signature.avatarUrl"
                     />
                   </td>
 
@@ -116,11 +116,11 @@
                                 padding: '0',
                               }"
                             >
-                              {{ props.name }}
+                              {{ signature.name }}
                             </p>
                             <div
                               :style="{ boxSizing: 'border-box', margin: '0 0 12px', padding: '0' }"
-                              v-if="props.title"
+                              v-if="signature.title"
                             >
                               <span
                                 :style="{
@@ -136,7 +136,7 @@
                                   fontFamily: 'Trebuchet MS, CenturyGothic, Helvetica, Verdana',
                                 }"
                               >
-                                {{ props.title }}
+                                {{ signature.title }}
                               </span>
                             </div>
 
@@ -144,10 +144,10 @@
                             <div :style="{ boxSizing: 'border-box', margin: '0', padding: '0' }">
                               <component 
                                 :is="socialObjectLinkIcon" 
-                                v-for="(object, index) in props.socialLinks" 
+                                v-for="(object, index) in signature.socialLinks" 
                                 :key="object.type"
                                 :="object"
-                                :isLast="props.socialLinks ? index === props.socialLinks?.length! - 1 : false"
+                                :isLast="signature.socialLinks ? index === signature.socialLinks?.length! - 1 : false"
                               />
                             </div>
                           </td>
@@ -181,7 +181,7 @@
                         marginTop: '16px',
                         marginBottom: '6px'
                       }"
-                      :src="props.barcodeUrl"
+                      :src="signatureAssets.barcodeUrl || signature.barcodeUrl"
                     />
                     <div
                       :style="{
@@ -201,10 +201,10 @@
                         }"
                       >
                         <a
-                          :href="`tel:${props.footerPhone}`"
+                          :href="`tel:${signature.footerPhone}`"
                           :style="{ color: '#808080', textDecoration: 'unset' }"
                         >
-                          {{ props.footerPhone }}
+                          {{ signature.footerPhone }}
                         </a>
                       </div>
                       <div
@@ -216,10 +216,10 @@
                         }"
                       >
                         <a
-                          :href="props.footerLink"
+                          :href="signature.footerLink"
                           :style="{ color: '#808080', textDecoration: 'unset' }"
                         >
-                          {{  props.footerLinkText }}
+                          {{  signature.footerLinkText }}
                         </a>
                       </div>
                       <div :style="{ clear: 'both', height: '0' }">&nbsp;</div>
@@ -233,10 +233,10 @@
         <td
           width="12px"
           :style="{ display: 'table-cell', boxSizing: 'border-box', margin: '0', padding: '0' }"
-          v-if="props.borderUrl"
+          v-if="signatureAssets.borderUrl || signature.borderUrl"
         >
           <!-- Border -->
-          <img :src="props.borderUrl" :style="{ display: 'inline', verticalAlign: 'middle' }" />
+          <img :src="signatureAssets.borderUrl || signature.borderUrl" :style="{ display: 'inline', verticalAlign: 'middle' }" />
         </td>
       </tr>
     </tbody>
@@ -245,9 +245,18 @@
 
 <script setup lang="ts">
   import { h } from 'vue'
-  import type { SignatureModel, SocialObjectModel } from '@/types'
+  import type { SocialObjectModel, SocialTypeModel, SocialObjectAssetModel } from '@/types'
+  import { useSignatureStore } from '@/stores/useSignatureStore'
+  import { storeToRefs } from 'pinia'
 
-  const props = defineProps<Partial<SignatureModel>>()
+  const signatureStore = storeToRefs(useSignatureStore())
+  const { signature, signatureAssets } = signatureStore
+
+  const getAssetEntry = (assets: SocialObjectAssetModel[], type: SocialTypeModel) => {
+    if (!assets || assets.length === 0) return null
+    
+    return assets.find(asset => asset.transType === type)
+  }
 
   const socialObjectLinkIcon = (data: SocialObjectModel & {
     isLast: boolean
@@ -262,8 +271,8 @@
       textDecoration: 'unset',
     },
   }, [
-    h('img', {
-      src: data.iconHref,
+  h('img', {
+      src: (data.type && getAssetEntry(signatureAssets.value?.socialLinks, data.type)?.transIconHref) || data.iconHref,
     }),
   ])
 </script>

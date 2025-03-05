@@ -30,10 +30,6 @@ export function useUriValidation() {
       const finalUri = uri.includes('drive.google.com') ? parseGDriveUri(uri) : uri
       
       const response = await fetch(finalUri, { method: 'HEAD' })
-
-      console.log(response)
-      console.log(response.headers)
-      console.log(response.headers.get('webContentLink'))
       
       if (response.ok) {
         const contentType = response.headers.get('content-type')
