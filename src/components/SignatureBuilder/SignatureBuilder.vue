@@ -12,16 +12,23 @@
             </div>
 
             <div>
-              <p
-                class="italic mt-4 min-w-[300px] mx-auto text-center text-sm opacity-0 transition-[opacity] duration-300"
+              <div 
+                class="overflow-hidden h-0 opacity-0 transition-[height,_opacity] duration-300"
                 :class="[
                   { '!opacity-100': activeStep === 4 },
-                  { 'text-white/80': !isLightMode },
-                  { 'text-ba-black': isLightMode },
                 ]"
+                ref="instructRef"
               >
-                Copy your signature above, then paste (cmd/ctrl + v) in your Gmail settings.
-              </p>
+                <p
+                  class="italic mt-4 min-w-[300px] mx-auto text-center text-sm "
+                  :class="[
+                    { 'text-white/80': !isLightMode },
+                    { 'text-ba-black': isLightMode },
+                  ]"
+                >
+                  Copy your signature above, then paste (cmd/ctrl + v) in your Gmail settings.
+                </p>
+              </div>
 
               <div class="ease-easy h-0 overflow-hidden text-center opacity-0 transition-[height,_opacity] duration-300" :class="{ '!h-[66px] !opacity-100': activeStep === 4 }">
                 <div class="grid grid-flow-col auto-cols-fr gap-8 items-center mt-6">
@@ -98,11 +105,13 @@
   const signatureTableRef = ref(null) as Ref<RendererNode | null>
   const wrapperRef = ref(null) as Ref<HTMLElement | null>
   const cardRef = ref(null) as Ref<HTMLElement | null>
+  const stepperRef = ref(null) as Ref<HTMLElement | null>
+  const instructRef = ref(null) as Ref<HTMLElement | null>
 
   // Height tracking
-  const stepperRef = ref(null) as Ref<HTMLElement | null>
   const wrapperHeight = ref(0)
   const cardHeight = ref(0)
+  const instructHeight = ref(0)
 
   const getClonedNodeHeight = (node: HTMLElement) => {
     const clone = node.cloneNode(true) as HTMLElement
@@ -146,6 +155,17 @@
 
       if (cardRef.value.style) {
         cardRef.value.style.height = `${cardHeight.value}px`
+      }
+    }
+    
+    if (instructRef.value) {
+      if (instructRef.value.style) {
+        if (activeStep.value === 4) {
+          instructHeight.value = getClonedNodeHeight(instructRef.value)
+          instructRef.value.style.height = `${instructHeight.value}px`
+        } else {
+          instructRef.value.style.height = '0px'
+        }
       }
     }
   }

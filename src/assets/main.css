@@ -322,16 +322,12 @@ h1, h2, h3, h4, h5, h6 {
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0 2rem;
   font-weight: normal;
 }
 
 @media (min-width: 1024px) {
   body {
     width: 100%;
-  }
-
-  #app {
-    padding: 0 2rem;
   }
 }
