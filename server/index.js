@@ -5,9 +5,13 @@ import 'dotenv/config'
 
 const app = express();
 
+// Determine environment
+const isProd = process.env.NODE_ENV === 'production';
+const clientOrigin = isProd ? 'https://ba-sig.robshelnutt.com' : 'http://localhost:5173';
+
 // Enable CORS for all routes
 app.use(cors({
-    origin: 'http://localhost:5173', // Vite's default development server
+    origin: clientOrigin, // Dynamic origin based on environment
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -24,5 +28,5 @@ app.get("/auth", function (req, res) {
 });
 
 app.listen(3001, function () {
-    console.log("Live at Port 3001");
+    console.log(`Server running at Port 3001, client origin: ${clientOrigin}`);
 });
