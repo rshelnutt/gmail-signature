@@ -7,7 +7,7 @@
     "dev": "yarn typegen && vite",
     "build": "yarn typegen && vite build",
     "preview": "yarn typegen && vite preview",
-    "run": "yarn build && node server/index.js",
+    "run": "yarn build && node ./server/index.js",
     "typegen": "chmod +x ./scripts/typegen.sh && ./scripts/typegen.sh",
     "format": "prettier .  --write"
   },
