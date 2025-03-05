@@ -33,6 +33,7 @@
     // Use Promise.all to wait for all files to be added
     const addFilePromises = assetList.map(async (assetUrl: string) => {
       if (assetUrl) {
+        console.log(assetUrl, parseFileName(assetUrl))
         return await addFileFromUrl(parseFileName(assetUrl), assetUrl)
       }
       return false

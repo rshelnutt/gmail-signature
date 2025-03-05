@@ -168,7 +168,6 @@
     if (e.dataTransfer?.files) {
       const file = e.dataTransfer.files[0]
       if (file && validateFile({ size: file.size, type: file.type })) {
-        console.log('passed the checks')
         uploadInputRef.value.$el.querySelector('input[type="file"]').files = e.dataTransfer.files
         const event = new Event('change', { bubbles: true })
         uploadInputRef.value.$el.querySelector('input[type="file"]').dispatchEvent(event)
