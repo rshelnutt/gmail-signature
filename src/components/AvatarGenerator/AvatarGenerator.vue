@@ -128,8 +128,7 @@
   })
 
   const uploadProgressProxy = computed(() => {
-    // Check if the store already has an avatarUrl;
-    // if it does, return 100%
+    // Check if the store already has an avatarUrl; if it does, return 100%
     if (signature.value.avatarUrl) return 100
     return uploadProgress.value
   })

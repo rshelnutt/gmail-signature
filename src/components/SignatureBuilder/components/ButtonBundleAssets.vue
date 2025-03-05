@@ -12,7 +12,6 @@
   import { useSignatureStore } from '@/stores/useSignatureStore'
   import useZip from '@/composables/useZip'
   import { Icon } from '@iconify/vue'
-    import { socialMap } from '@/composables/useSocial'
 
   const signatureStore = useSignatureStore()
   const { signature } = storeToRefs(signatureStore)
@@ -60,9 +59,9 @@
     // Use Promise.all to wait for all files to be added
     const addFilePromises = assetList.map(async (asset) => {
       if (asset.url) {
-        console.log(`Adding file: ${asset.filename} from ${asset.url}`)
         return await addFileFromUrl(asset.filename, asset.url)
       }
+
       return false
     })
     
