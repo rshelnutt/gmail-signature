@@ -3,17 +3,17 @@
 @import 'tailwindcss';
 
 @font-face {
-  font-family: Industry;
-  font-style: normal;
-  font-weight: 300;
-  src: url(./fonts/Digital-7.woff2) format("woff2"),url(./fonts/Digital-7.woff) format("woff")
-}
-
-@font-face {
   font-family: QuinqueFive;
   font-style: normal;
   font-weight: 300;
   src: url(./fonts/QuinqueFive.woff2) format("woff2"),url(./fonts/QuinqueFive.woff) format("woff")
+}
+
+@font-face {
+  font-family: Digital-7;
+  font-style: normal;
+  font-weight: 300;
+  src: url(./fonts/Digital-7.woff2) format("woff2"),url(./fonts/Digital-7.woff) format("woff")
 }
 
 @font-face {
