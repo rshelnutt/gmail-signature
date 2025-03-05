@@ -19,7 +19,7 @@
           height="185px"
           :style="{ display: 'table-cell', boxSizing: 'border-box', margin: '0', padding: '0' }"
         >
-          <div :style="[{ padding: '10px'}]">
+          <div :style="[{ backgroundColor: 'white', padding: '10px'}]">
             <table
               :style="{
                 textIndent: '0',
